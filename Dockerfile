@@ -13,8 +13,9 @@ RUN chmod 644 /usr/lib/sudo/sudoers.so
 # RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
 
 # Add our code
-# ADD ./webapp /opt/webapp/
-# WORKDIR /opt/webapp
+ADD ./webapp /opt/webapp/
+WORKDIR /opt/webapp
+
 
 # Expose is NOT supported by Heroku
 # EXPOSE 5000 		
