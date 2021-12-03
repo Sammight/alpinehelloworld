@@ -1,6 +1,10 @@
 #Grab the latest alpine image
 FROM heroku/heroku:20
 
+RUN chown root:dyno /usr/bin/sudo
+RUN chmod 755 /usr/bin/sudo
+RUN chmod 644 /usr/lib/sudo/sudoers.so
+
 # Install python and pip
 # RUN apk add --no-cache --update python3 py3-pip bash
 # ADD ./webapp/requirements.txt /tmp/requirements.txt
@@ -21,5 +25,9 @@ USER myuser
 
 # Run the app.  CMD is required to run on Heroku
 # $PORT is set by Heroku			
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
+# CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
+
+CMD chown root:dyno /usr/bin/sudo
+CMD chmod 755 /usr/bin/sudo
+CMD chmod 644 /usr/lib/sudo/sudoers.so
 
